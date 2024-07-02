@@ -15,19 +15,6 @@ def test_read_xlsx_file():
             assert name in cell_value
 
 
-def test_csv():
-    with zipfile.ZipFile(ZIP_DIR) as zip_file:
-        with zip_file.open("import_empl_csv.csv") as csv_file:
-            content = csv_file.read().decode('utf-8-sig')
-            csvreader = list(csv.reader(content.splitlines()))
-            second_row = csvreader[10]
-            result_list = second_row[0].split(';')
-            vendor = "B4COM"
-            model = "CS4148D-6U"
-            assert result_list[2] == vendor
-            assert result_list[3] == model
-
-
 def test_read_pdf_file():
     with zipfile.ZipFile(ZIP_DIR) as zip_file:
         with zip_file.open("pythonx.pdf") as pdf_file:
@@ -35,3 +22,14 @@ def test_read_pdf_file():
             page = reader.pages[1]
             text = page.extract_text()
             assert 'Rapid' in text
+
+
+def test_csv():
+    with zipfile.ZipFile(ZIP_DIR) as zip_file:
+        with zip_file.open("enterprise.csv") as csv_file:
+            content = csv_file.read().decode('utf-8-sig')
+            csvreader = list(csv.reader(content.splitlines()))
+            second_row = csvreader[1]
+            result_list = second_row[0].split(';')
+            year = "2023"
+            assert result_list[0] == year
