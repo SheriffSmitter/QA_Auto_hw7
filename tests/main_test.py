@@ -30,6 +30,6 @@ def test_csv():
             content = csv_file.read().decode('utf-8-sig')
             csvreader = list(csv.reader(content.splitlines()))
             second_row = csvreader[1]
-            result_list = second_row[0].split(';')
-            year = "2023"
-            assert result_list[0] == year
+            result_list = second_row[8].split(';')
+            value = "930995"
+            assert result_list[0] == value
